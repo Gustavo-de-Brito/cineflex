@@ -12,7 +12,7 @@ export default function App() {
                 <TopBar />
             <Routes>
                 <Route path="/" element={<Movies />} />
-                <Route path="/sessoes/:idFilme" element={<Sessions />} />
+                <Route path="/sessoes/:movieId" element={<Sessions />} />
             </Routes>
             </BrowserRouter>
         </>

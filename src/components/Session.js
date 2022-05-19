@@ -1,13 +1,11 @@
 import styled from "styled-components";
+import Buttons from "./Buttons";
 
-export default function Session() {
+export default function Session({ weekday, day, showTimes }) {
     return(
         <SessionItem>
-            <h3>dia - horário</h3>
-            <Buttons>
-                <button>horário</button>
-                <button>horário</button>
-            </Buttons>
+            <h3>{ `${ weekday } - ${day}` }</h3>
+            <Buttons showTimes={ showTimes } />
         </SessionItem>
     );
 }
@@ -18,28 +16,11 @@ const SessionItem = styled.li`
     justify-content: space-between;
     width: 100%;
     padding: 0 20px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 
     h3 {
         font-size: 20px;
         color: #293845;
-        margin-bottom: 22px;
-    }
-`;
-
-const Buttons = styled.div`
-    display: flex;
-    align-items: center;
-    width: 100%;
-
-    button {
-        padding: 10px 20px;
-        background-color: #E8833A;
-        border-radius: 4px;
-        border: none;
-        color: #FFFFFF;
-        text-align: center;
-        font-size: 18px;
-        margin-right: 8px;
+        margin-bottom: 40px;
     }
 `;
