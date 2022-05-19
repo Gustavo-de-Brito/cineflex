@@ -14,6 +14,9 @@ const NavBar = styled.div`
     width: 100vw;
     padding: 20px;
     background-color: #C3CFD9;
+    position: fixed;
+    top: 0;
+    left: 0;
 
     h1 {
         font-size: 34px;

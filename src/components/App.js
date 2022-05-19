@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "./globalStyles";
-import Movies from "./Movies";
 import TopBar from "./TopBar";
+import Movies from "./Movies";
+import Sessions from "./Sessions";
 
 export default function App() {
     return (
@@ -11,6 +12,7 @@ export default function App() {
                 <TopBar />
             <Routes>
                 <Route path="/" element={<Movies />} />
+                <Route path="/sessoes/:idFilme" element={<Sessions />} />
             </Routes>
             </BrowserRouter>
         </>

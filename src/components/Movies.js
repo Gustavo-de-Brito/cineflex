@@ -24,6 +24,7 @@ export default function Movies() {
                         key={index}
                         imageUrl={movie.posterURL}
                         title={movie.title}
+                        movieId={movie.id}
                     />)
                 })
                 :
@@ -35,13 +36,14 @@ export default function Movies() {
 }
 
 const Content = styled.div`
-    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 60px;
+    width: 100vw;
 
     h2 {
-        margin: 40px 0;
+        margin: 50px 0;
         font-size: 24px;
         color: #293845;
     }
