@@ -3,6 +3,7 @@ import GlobalStyle from "./globalStyles";
 import TopBar from "./TopBar";
 import Movies from "./Movies";
 import Sessions from "./Sessions";
+import Seats from "./Seats";
 
 export default function App() {
     return (
@@ -13,6 +14,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Movies />} />
                 <Route path="/sessoes/:movieId" element={<Sessions />} />
+                <Route path="/assentos/:sessionId" element={<Seats />} />
             </Routes>
             </BrowserRouter>
         </>

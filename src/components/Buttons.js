@@ -1,9 +1,17 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function Buttons({ showTimes }) {
     return (
         <SessionsTime>
-            { showTimes.map((time, index) => <button key={index}>{time.name}</button>) }
+            { showTimes.map((time, index) => {
+                return (
+                    <Link key={index} to={`/assentos/${time.id}`}>
+                        <button>{time.name}</button>
+                    </Link>
+                );
+            })
+            }
         </SessionsTime>
     );
 }

@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Session from "./Session";
+import Footer from "./Fotter";
 
 export default function Sessions() {
     const movieId = useParams().movieId;
     const [ movieData, setMovieData ] = useState({});
     const [ sessions, setSessions ] = useState([]);
-
+    
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${ movieId }/showtimes`);
 
@@ -16,7 +17,7 @@ export default function Sessions() {
             setMovieData(response.data);
             setSessions(response.data.days);
         });
-    }, [])
+    }, [movieId])
 
     return (
         <SessionsContent>
@@ -38,6 +39,10 @@ export default function Sessions() {
                     <></>
                 }
             </SessionsList>
+            <Footer>
+                <img src={ movieData.posterURL } alt={ movieData.title }/>
+                <h3>{ movieData.title }</h3>
+            </Footer>
         </SessionsContent>
     );
 }
@@ -60,4 +65,5 @@ const SessionsList = styled.ul`
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 140px;
 `;
