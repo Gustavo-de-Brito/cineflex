@@ -29,4 +29,9 @@ const BottomBar = styled.div`
         font-size: 26px;
         color: #293845;
     }
+
+    p{
+        font-size: 26px;
+        color: #293845;
+    }
 `;

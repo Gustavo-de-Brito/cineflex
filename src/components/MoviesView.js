@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Movie from "./Movie";
+import MoviesList from "./MoviesList";
 
-export default function Movies() {
+export default function MoviesView() {
     const [ movies, setMovies ] = useState([]);
 
     useEffect(() => {
@@ -15,22 +15,7 @@ export default function Movies() {
     return (
         <Content>
             <h2>Selecione o filme</h2>
-            <MoviesList>
-                {movies.length !== 0 
-                ?
-                movies.map((movie, index) => {
-                    return (
-                    <Movie
-                        key={index}
-                        imageUrl={movie.posterURL}
-                        title={movie.title}
-                        movieId={movie.id}
-                    />)
-                })
-                :
-                <></>
-                }
-            </MoviesList>
+            <MoviesList movies={ movies }/>
         </Content>
     );
 }
@@ -47,10 +32,4 @@ const Content = styled.div`
         font-size: 24px;
         color: #293845;
     }
-`;
-
-const MoviesList = styled.ul`
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
 `;
