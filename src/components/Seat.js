@@ -4,18 +4,23 @@ import { useState } from "react";
 export default function Seat({ name, isAvailable, seatId, selectedSeats, setSelectedSeats }) {
     const [ selected, setSelected ] = useState(false);
 
-    function selectSeat(seatId, isSelected) {
+    function selectSeat(seatId, isSelected, isAvailable) {
         setSelected( !selected );
+
+        if(!isAvailable) {
+            alert("Esse assento não está disponível");
+        }
+
         if(isSelected) {
             setSelectedSeats( selectedSeats.filter( seat => seat !== seatId ) )
-        } else {
+        } else if(!isSelected && isAvailable) {
             setSelectedSeats( [...selectedSeats, seatId] );
         }
     }
 
     return (
         <SeatButton selected={ selected } isAvailable={isAvailable}>
-            <button onClick={ () => selectSeat( seatId, selected ) } >{ name }</button>
+            <button onClick={ () => selectSeat( seatId, selected, isAvailable ) } >{ name }</button>
         </SeatButton>
     );
 }
