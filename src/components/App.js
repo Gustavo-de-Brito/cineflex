@@ -5,9 +5,10 @@ import TopBar from "./TopBar";
 import Sessions from "./Sessions";
 import MoviesView from "./MoviesView";
 import SeatsView from "./SeatsView";
+import SucessView from "./SucessView";
 
 export default function App() {
-    const [ buyerData, setBuyerData ] = useState({});
+    const [ selectedSeats, setSelectedSeats ] = useState([]);
 
     return (
         <>
@@ -17,7 +18,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<MoviesView />} />
                 <Route path="/sessoes/:movieId" element={<Sessions />} />
-                <Route path="/assentos/:sessionId" element={<SeatsView setBuyerData={setBuyerData} />} />
+                <Route path="/assentos/:sessionId" element={<SeatsView selectedSeats={selectedSeats} setSelectedSeats={setSelectedSeats} />} />
+                <Route path="/sucesso" element={<SucessView />} />
             </Routes>
             </BrowserRouter>
         </>

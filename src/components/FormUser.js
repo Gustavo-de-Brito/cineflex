@@ -1,16 +1,28 @@
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function FormUser({ setBuyerData, selectedSeats }) {
+export default function FormUser({ selectedSeats }) {
     const [ name, setName ] = useState("");
     const [ cpf, setCpf ] = useState("");
+    const navigate = useNavigate();
 
-    function confirmPurchase() {
-        setBuyerData({
-            name: name,
-            cpf: cpf,
+    function confirmPurchase(e) {
+        e.preventDefault();
+
+        const body = {
             ids: selectedSeats,
-        })
+            name,
+            cpf,
+        };
+
+        const promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", body);
+
+        promise
+            .catch(err => console.log(`Erro no envio dos dados da compra, status: ${err.response.status}`))
+            .then(response => navigate("/sucesso", { replace: true }) );
+
     }
 
     return (
