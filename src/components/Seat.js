@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Seat({ name, isAvailable, seatId, selectedSeats, setSelectedSeats }) {
     const [ selected, setSelected ] = useState(false);
 
-    function selectSeat(seatId, isSelected, isAvailable) {
+    function selectSeat(seatId, name, isSelected, isAvailable) {
         setSelected( !selected );
 
         if(!isAvailable) {
@@ -14,13 +14,13 @@ export default function Seat({ name, isAvailable, seatId, selectedSeats, setSele
         if(isSelected) {
             setSelectedSeats( selectedSeats.filter( seat => seat !== seatId ) )
         } else if(!isSelected && isAvailable) {
-            setSelectedSeats( [...selectedSeats, seatId] );
+            setSelectedSeats( [...selectedSeats, { name, seatId }] );
         }
     }
 
     return (
         <SeatButton selected={ selected } isAvailable={isAvailable}>
-            <button onClick={ () => selectSeat( seatId, selected, isAvailable ) } >{ name }</button>
+            <button onClick={ () => selectSeat( seatId, name, selected, isAvailable ) } >{ name }</button>
         </SeatButton>
     );
 }

@@ -7,10 +7,10 @@ import SeatsSubtitle from "./SeatsSubtitle";
 import FormUser from "./FormUser";
 import Footer from "./Fotter";
 
-export default function SeatsView({ selectedSeats, setSelectedSeats }) {
+export default function SeatsView({ setBuyerData, sessionData, setSessionData }) {
     const sessionId = useParams().sessionId;
-    const [ sessionData, setSessionData ] = useState({});
     const [ seats, setSeats ] = useState([]);
+    const [ selectedSeats, setSelectedSeats ] = useState([]);
 
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${sessionId}/seats`);
@@ -26,9 +26,10 @@ export default function SeatsView({ selectedSeats, setSelectedSeats }) {
     return (
         <SeatsContent>
             <h2>Selecione o(s) assento(s)</h2>
-            <SeatsList seats={ seats } selectedSeats={ selectedSeats } setSelectedSeats={setSelectedSeats} />
+
+            <SeatsList seats={ seats } selectedSeats={ selectedSeats } setSelectedSeats={ setSelectedSeats } />
             <SeatsSubtitle />
-            <FormUser selectedSeats={ selectedSeats } />
+            <FormUser selectedSeats={ selectedSeats } setBuyerData={ setBuyerData } />
             {
                 sessionData.movie !== undefined
                 ?

@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Session from "./Session";
+import SessionList from "./SessionsList";
 import Footer from "./Fotter";
 
-export default function Sessions() {
+export default function SessionsView() {
     const movieId = useParams().movieId;
     const [ movieData, setMovieData ] = useState({});
     const [ sessions, setSessions ] = useState([]);
@@ -22,23 +22,7 @@ export default function Sessions() {
     return (
         <SessionsContent>
             <h2>Selecione o horário</h2>
-            <SessionsList>
-                { 
-                    sessions.length > 0 
-                    ?
-                    sessions.map((session, index) => {
-                        return (
-                            <Session
-                            key={index}
-                            weekday={ session.weekday }
-                            day={ session.date }
-                            showTimes={ session.showtimes }
-                        />)
-                    })
-                    :
-                    <></>
-                }
-            </SessionsList>
+            <SessionList sessions={ sessions } />
             <Footer>
                 <img src={ movieData.posterURL } alt={ movieData.title }/>
                 <h3>{ movieData.title }</h3>
@@ -59,11 +43,4 @@ const SessionsContent = styled.div`
         font-size: 24px;
         color: #293845;
     }
-`;
-
-const SessionsList = styled.ul`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 140px;
 `;

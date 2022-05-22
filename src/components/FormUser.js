@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function FormUser({ selectedSeats }) {
+export default function FormUser({ selectedSeats, setBuyerData }) {
     const [ name, setName ] = useState("");
     const [ cpf, setCpf ] = useState("");
     const navigate = useNavigate();
@@ -12,10 +12,12 @@ export default function FormUser({ selectedSeats }) {
         e.preventDefault();
 
         const body = {
-            ids: selectedSeats,
             name,
             cpf,
+            ids: selectedSeats.map( seat => seat.seatId ),
         };
+    
+        setBuyerData({...body, ids: selectedSeats });
 
         const promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", body);
 
